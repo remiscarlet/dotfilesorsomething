@@ -70,7 +70,7 @@ function prompt_func() {
     #prompt="${TITLEBAR}${BLUE}[${RED}\w${GREEN}$(parse_git_branch)${BLUE}]${COLOR_NONE}"
 
     #Capital W is just the trailing part of the current working directory
-    prompt="${TITLEBAR}${BLUE}[${RED}\W${GREEN}$(git_prompt_info)${BLUE}]${COLOR_NONE}"
+    prompt="${RED}[${LIGHT_GRAY}GCP_VM${RED}]${TITLEBAR}${BLUE}[${YELLOW}\W${GREEN}$(git_prompt_info)${BLUE}]${COLOR_NONE}"
 
     # Py VirtualEnv stuff
     if [[ "$VIRTUAL_ENV" != "" ]]
