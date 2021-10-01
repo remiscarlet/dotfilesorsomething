@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+source "$(dirname "${BASH_SOURCE[0]}")/secrets/secrets.sh"
 
 # get the name of the branch we are on and whether or not it's dirty in a fast and not insane way
 function git_prompt_info() {
@@ -22,6 +23,13 @@ parse_git_dirty() {
 
 GIT_PROMPT_DIRTY=" x"
 GIT_PROMPT_CLEAN=""
+
+if ! command -v hostid &> /dev/null
+then
+    HOST="MACOS"
+else
+    HOST=$(get_secret hostids $(hostid))
+fi
 
 ##############################
 # Git Commands
@@ -73,7 +81,7 @@ function prompt_func() {
     #prompt="${TITLEBAR}${BLUE}[${RED}\w${GREEN}$(parse_git_branch)${BLUE}]${COLOR_NONE}"
 
     #Capital W is just the trailing part of the current working directory
-    prompt="${RED}[${LIGHT_GRAY}GCP_VM${RED}]${TITLEBAR}${BLUE}[${YELLOW}\W${GREEN}$(git_prompt_info)${BLUE}]${COLOR_NONE}"
+    prompt="${RED}[${LIGHT_GRAY}${HOST}${RED}]${TITLEBAR}${BLUE}[${YELLOW}\W${GREEN}$(git_prompt_info)${BLUE}]${COLOR_NONE}"
 
     # Py VirtualEnv stuff
     if [[ "$VIRTUAL_ENV" != "" ]]

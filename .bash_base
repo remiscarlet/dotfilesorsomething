@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+function mysource {
+    source "$(dirname "${BASH_SOURCE[0]}")/$@"
+}
+
+mysource inc/bash.pre.init.sh
+
+mysource inc/bash.aliases.cd.sh
+mysource inc/bash.aliases.cmd.sh
+mysource inc/bash.aliases.ssh.sh
+
+mysource inc/bash.ooa.sh
+mysource inc/bash.funcs.sh
+
+mysource inc/bash.post.init.sh
+mysource inc/bash.post.cli.sh

@@ -16,3 +16,6 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "inc/secrets"]
+	path = inc/secrets
+	url = git@github.com:remiscarlet/dotfilesorsomething-secrets.git
