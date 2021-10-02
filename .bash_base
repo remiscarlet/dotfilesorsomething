@@ -15,3 +15,4 @@ mysource inc/bash.funcs.sh
 
 mysource inc/bash.post.init.sh
 mysource inc/bash.post.cli.sh
+mysource inc/bash.post.pyenv.sh

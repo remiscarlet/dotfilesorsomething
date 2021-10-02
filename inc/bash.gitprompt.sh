@@ -86,7 +86,8 @@ function prompt_func() {
     # Py VirtualEnv stuff
     if [[ "$VIRTUAL_ENV" != "" ]]
     then
-        prompt="(VENV)${prompt}"
+        VENV_NAME=$(basename $VIRTUAL_ENV)
+        prompt="${YELLOW}(${WHITE}VENV:${RED}$VENV_NAME${YELLOW})${prompt}"
     fi
 
     if test $previous_return_value -eq 0
