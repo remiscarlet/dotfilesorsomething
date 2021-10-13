@@ -10,7 +10,7 @@ function git_prompt_info() {
 }
 
 # Checks if working tree is dirty
-parse_git_dirty() {
+function parse_git_dirty() {
   local SUBMODULE_SYNTAX="--ignore-submodules=dirty"
   if [[ -n $(git status -s ${SUBMODULE_SYNTAX}  2> /dev/null) ]]; then
      if [[ -n ${DISABLE_RODEO_WRANGLE} ]]; then
@@ -24,7 +24,7 @@ parse_git_dirty() {
 GIT_PROMPT_DIRTY=" x"
 GIT_PROMPT_CLEAN=""
 
-if ! command -v hostid &> /dev/null
+if get_hw_type == "mac"
 then
     HOST="MACOS"
 else

@@ -1,3 +1,11 @@
+if has('macunix')
+    " Setting up Mac specific vim config
+    set clipboard=unnamed
+else
+    " 'other', or linux hosts.
+    set clipboard=unnamedplus
+endif
+
 syntax on = True
 set autoindent
 set smartindent
@@ -22,8 +30,6 @@ let g:html_indent_inctags = "html,body,head,tbody"
 au BufNewFile,BufRead *.tpl setlocal ft=html
 
 let g:terraform_fmt_on_save=1
-
-set clipboard=unnamedplus
 
 command NumOn :set nu | :set rnu
 command NumOff :set nonu | :set nornu

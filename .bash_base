@@ -6,12 +6,18 @@ function mysource {
 
 mysource inc/bash.pre.init.sh
 
+
 mysource inc/bash.aliases.cd.sh
 mysource inc/bash.aliases.cmd.sh
 mysource inc/bash.aliases.ssh.sh
 
 mysource inc/bash.ooa.sh
 mysource inc/bash.funcs.sh
+
+if get_hw_type == "mac"
+then
+    mysource inc/bash.node.sh
+fi
 
 mysource inc/bash.post.init.sh
 mysource inc/bash.post.cli.sh
