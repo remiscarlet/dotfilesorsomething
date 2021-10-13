@@ -1,11 +1,12 @@
 #!/usr/bin/bash
 
+[[ -n $SECRETS_LOADED ]] || source "$(dirname "${BASH_SOURCE[0]}")/inc/secrets/secrets.sh"
+
 function mysource {
     source "$(dirname "${BASH_SOURCE[0]}")/$@"
 }
 
 mysource inc/bash.pre.init.sh
-
 
 mysource inc/bash.aliases.cd.sh
 mysource inc/bash.aliases.cmd.sh
@@ -13,6 +14,7 @@ mysource inc/bash.aliases.ssh.sh
 
 mysource inc/bash.ooa.sh
 mysource inc/bash.funcs.sh
+mysource inc/bash.gitprompt.sh
 
 if get_hw_type == "mac"
 then

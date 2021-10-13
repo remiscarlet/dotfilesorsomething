@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-source "$(dirname "${BASH_SOURCE[0]}")/secrets/secrets.sh"
 
 # get the name of the branch we are on and whether or not it's dirty in a fast and not insane way
 function git_prompt_info() {

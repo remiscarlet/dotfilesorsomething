@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$(dirname "${BASH_SOURCE[0]}")/bash.gitprompt.sh"
+# Should come after gitprompt
 
 alias ls='ls -GFh'
 export CLICOLOR=1

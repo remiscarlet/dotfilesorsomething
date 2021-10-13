@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source "$(dirname "${BASH_SOURCE[0]}")/secrets/secrets.sh"
-
 # Commands
 alias flush="mv db.sqlite3 backups/db.sqlite3.#{date} && cp db.sqlite3.cleanslate.10.13.17 db.sqlite3"
 alias runserver="python manage.py runserver"
