@@ -25,3 +25,15 @@
 [submodule ".vim/bundle/vim-gutentags"]
 	path = .vim/bundle/vim-gutentags
 	url = git@github.com:ludovicchabant/vim-gutentags.git
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = git@github.com:ervandew/supertab.git
+[submodule ".tmux/plugins/tmux-mem-cpu-load"]
+	path = .tmux/plugins/tmux-mem-cpu-load
+	url = git@github.com:thewtex/tmux-mem-cpu-load.git
+[submodule ".tmux/plugins/tmux-resurrect"]
+	path = .tmux/plugins/tmux-resurrect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git

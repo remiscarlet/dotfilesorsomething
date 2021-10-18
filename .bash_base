@@ -1,8 +1,4 @@
-#!/usr/bin/bash
-
-#PS4='+ $(date "+%s.%N")\011 '
-#exec 3>&2 2>/tmp/bashstart.$$.log
-#set -x
+#!/usr/bin/env bash
 
 [[ -n $SECRETS_LOADED ]] || source "$(dirname "${BASH_SOURCE[0]}")/inc/secrets/secrets.sh"
 
@@ -30,6 +26,3 @@ fi
 mysource inc/bash.post.init.sh
 mysource inc/bash.post.cli.sh
 mysource inc/bash.post.pyenv.sh
-
-#set +x
-#exec 2>&3 3>&-

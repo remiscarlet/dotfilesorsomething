@@ -1,5 +1,4 @@
-#!/usr/bin/bash
-
+#!/usr/bin/env bash
 
 # get the name of the branch we are on and whether or not it's dirty in a fast and not insane way
 function git_prompt_info() {

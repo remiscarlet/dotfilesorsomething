@@ -38,6 +38,16 @@ command NumOff :set nonu | :set nornu
 nnoremap nun :NumOn <Return>
 nnoremap nuf :NumOff <Return>
 
+" Remap split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" Make splits go below/right by default (instead of top/left)
+set splitbelow
+set splitright
+
+
 au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
 au BufNewFile,BufRead *.erb set syntax=ruby
 autocmd FileType javascript,typescript,vue setlocal shiftwidth=2 tabstop=2 softtabstop=2
