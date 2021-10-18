@@ -7,6 +7,7 @@ else
 endif
 
 syntax on = True
+set backspace=2
 set autoindent
 set smartindent
 set expandtab tabstop=4 shiftwidth=4 smarttab softtabstop=4

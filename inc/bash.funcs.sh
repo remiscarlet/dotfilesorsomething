@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+function beep {
+    echo -en "\007"
+}
+
 function jqlint {
     cat $1 | jq '.' > tmp.json;
     if [ -s tmp.json ]

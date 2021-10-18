@@ -24,6 +24,7 @@ mysource inc/ext/git-completion.sh
 if get_hw_type == "mac"
 then
     mysource inc/bash.node.sh
+    mysource inc/bash.aliases.dots.sh
 fi
 
 mysource inc/bash.post.init.sh

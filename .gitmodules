@@ -19,3 +19,9 @@
 [submodule "inc/secrets"]
 	path = inc/secrets
 	url = git@github.com:remiscarlet/dotfilesorsomething-secrets.git
+[submodule ".vim/bundle/jedi-vim"]
+	path = .vim/bundle/jedi-vim
+	url = git@github.com:davidhalter/jedi-vim.git
+[submodule ".vim/bundle/vim-gutentags"]
+	path = .vim/bundle/vim-gutentags
+	url = git@github.com:ludovicchabant/vim-gutentags.git
