@@ -22,7 +22,7 @@ function parse_git_dirty() {
 GIT_PROMPT_DIRTY=" x"
 GIT_PROMPT_CLEAN=""
 
-if get_hw_type == "mac"
+if [[ $HWTYPE == "mac" ]];
 then
     HOST="MACOS"
 else

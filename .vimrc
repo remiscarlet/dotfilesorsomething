@@ -33,7 +33,32 @@ set laststatus=2
 " If vim gives you issues due to symlinking .vimrc, it's because of the line below. Just copy .vimrc to ~/ instead of symlinking.
 let g:airline_section_c = airline#section#create(['%{getcwd()}', "/", "file"])
 
-nnoremap <C-w> :hide <Return>
+"----------------------------"
+" Custom Shortcuts and Binds "
+"----------------------------"
+" Vim split stuff
+nnoremap <Leader>w :hide <Return>
+
+" Zoom/Unzoom shortcuts "
+noremap Zz <c-w>_ \| <c-w>\|
+noremap Zo <c-w>=
+
+" Remap split navigation "
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Make splits go below/right by default (instead of top/left)
+set splitbelow
+set splitright
+
+" Line number shortcuts "
+set rnu nu
+command NumOn :set nu | :set rnu
+command NumOff :set nonu | :set nornu
+nnoremap nun :NumOn <Return>
+nnoremap nuf :NumOff <Return>
 
 "------------------------"
 " Formatting/Style Stuff "
@@ -65,27 +90,6 @@ autocmd FileType py setlocal shiftwidth=4 tabstop=4 noexpandtab
 let g:html_indent_inctags = "html,body,head,tbody"
 au BufNewFile,BufRead *.tpl setlocal ft=html
 
-"-----------------------"
-" Line number shortcuts "
-"-----------------------"
-
-set rnu nu
-command NumOn :set nu | :set rnu
-command NumOff :set nonu | :set nornu
-nnoremap nun :NumOn <Return>
-nnoremap nuf :NumOff <Return>
-
-"------------------------"
-" Remap split navigation "
-"------------------------"
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-" Make splits go below/right by default (instead of top/left)
-set splitbelow
-set splitright
 
 "----------"
 " NERDTree "
@@ -97,6 +101,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=30
 
 " Start NERDTree and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 [[ -n $SECRETS_LOADED ]] || source "$(dirname "${BASH_SOURCE[0]}")/inc/secrets/secrets.sh"
+HWID=$(get_secret hostids $(get_hwid))
+HWTYPE=$(get_hw_type)
 
 function mysource {
     source "$(dirname "${BASH_SOURCE[0]}")/$@"
@@ -12,14 +14,22 @@ mysource inc/bash.aliases.cd.sh
 mysource inc/bash.aliases.cmd.sh
 mysource inc/bash.aliases.ssh.sh
 
-mysource inc/bash.ooa.sh
 mysource inc/bash.funcs.sh
 mysource inc/bash.gitprompt.sh
 mysource inc/ext/git-completion.sh
 
-if get_hw_type == "mac"
+if [[ $HWTYPE == "mac" ]];
 then
     mysource inc/bash.node.sh
+fi
+
+if [[ $HWID == "Remi MBA" ]];
+then
+    mysource inc/bash.ooa.sh
+fi
+
+if [[ $HWID == "Dots Laptop" ]];
+then
     mysource inc/bash.aliases.dots.sh
 fi
 
