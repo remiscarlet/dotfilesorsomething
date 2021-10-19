@@ -1,3 +1,7 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 if has('macunix')
     " Setting up Mac specific vim config
     set clipboard=unnamed
@@ -6,15 +10,12 @@ else
     set clipboard=unnamedplus
 endif
 
-syntax on = True
+" General Vim Settings
 set backspace=2
 set autoindent
 set smartindent
 set expandtab tabstop=4 shiftwidth=4 smarttab softtabstop=4
 colorscheme  elflord
-
-execute pathogen#infect()
-filetype plugin indent on
 
 set lazyredraw
 set synmaxcol=256
@@ -26,15 +27,21 @@ set laststatus=2
 " If vim gives you issues due to symlinking .vimrc, it's because of the line below. Just copy .vimrc to ~/ instead of symlinking.
 let g:airline_section_c = airline#section#create(['%{getcwd()}', "/", "file"])
 
-set rnu nu
+" Filetype-specific Settings
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
+au BufNewFile,BufRead *.erb set syntax=ruby
+autocmd FileType javascript,typescript,vue setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType go setlocal shiftwidth=4 tabstop=4 noexpandtab
+autocmd FileType py setlocal shiftwidth=4 tabstop=4 noexpandtab
+
 let g:html_indent_inctags = "html,body,head,tbody"
 au BufNewFile,BufRead *.tpl setlocal ft=html
 
-let g:terraform_fmt_on_save=1
-
+" Line number shortcuts
+set rnu nu
 command NumOn :set nu | :set rnu
 command NumOff :set nonu | :set nornu
-
 nnoremap nun :NumOn <Return>
 nnoremap nuf :NumOff <Return>
 
@@ -47,21 +54,19 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
-au BufNewFile,BufRead *.erb set syntax=ruby
-autocmd FileType javascript,typescript,vue setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
-autocmd FileType go setlocal shiftwidth=4 tabstop=4 noexpandtab
-autocmd FileType py setlocal shiftwidth=4 tabstop=4 noexpandtab
-
+" Formatting/Style Stuff
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-
 set listchars=tab:▸\ ,eol:¬
 
 au BufWritePost *.go !gofmt -w %
-
+let g:terraform_fmt_on_save=1
 
 let g:syntastic_python_checkers=['mypy']
 autocmd BufWritePost *.py silent! !black %
