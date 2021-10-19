@@ -1,3 +1,18 @@
+[submodule "inc/secrets"]
+	path = inc/secrets
+	url = git@github.com:remiscarlet/dotfilesorsomething-secrets.git
+[submodule ".tmux/plugins/tmux-mem-cpu-load"]
+	path = .tmux/plugins/tmux-mem-cpu-load
+	url = git@github.com:thewtex/tmux-mem-cpu-load.git
+[submodule ".tmux/plugins/tmux-resurrect"]
+	path = .tmux/plugins/tmux-resurrect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
 [submodule ".vim/bundle/black"]
 	path = .vim/bundle/black
 	url = https://github.com/ambv/black
@@ -13,12 +28,6 @@
 [submodule ".vim/bundle/vim-yaml"]
 	path = .vim/bundle/vim-yaml
 	url = https://github.com/avakhov/vim-yaml
-[submodule ".tmux/plugins/tpm"]
-	path = .tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "inc/secrets"]
-	path = inc/secrets
-	url = git@github.com:remiscarlet/dotfilesorsomething-secrets.git
 [submodule ".vim/bundle/jedi-vim"]
 	path = .vim/bundle/jedi-vim
 	url = git@github.com:davidhalter/jedi-vim.git
@@ -28,18 +37,6 @@
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = git@github.com:ervandew/supertab.git
-[submodule ".tmux/plugins/tmux-mem-cpu-load"]
-	path = .tmux/plugins/tmux-mem-cpu-load
-	url = git@github.com:thewtex/tmux-mem-cpu-load.git
-[submodule ".tmux/plugins/tmux-resurrect"]
-	path = .tmux/plugins/tmux-resurrect
-	url = git@github.com:tmux-plugins/tmux-resurrect.git
-[submodule ".tmux/plugins/tmux-sensible"]
-	path = .tmux/plugins/tmux-sensible
-	url = git@github.com:tmux-plugins/tmux-sensible.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = git@github.com:preservim/nerdtree.git
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
@@ -49,6 +46,9 @@
 [submodule ".vim/bundle/vim-nerdtree-syntax-highlight"]
 	path = .vim/bundle/vim-nerdtree-syntax-highlight
 	url = git@github.com:tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = git@github.com:preservim/nerdtree.git
 [submodule ".vim/bundle/nerdtree-git-plugin"]
 	path = .vim/bundle/nerdtree-git-plugin
 	url = git@github.com:Xuyuanp/nerdtree-git-plugin.git
