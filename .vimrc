@@ -1,5 +1,7 @@
+"-------------------"
+" INFECT EVERYTHING "
+"-------------------"
 execute pathogen#infect()
-
 syntax on
 filetype plugin indent on
 
@@ -30,6 +32,8 @@ set laststatus=2
 " Lol this line below doesn't like symlinks.
 " If vim gives you issues due to symlinking .vimrc, it's because of the line below. Just copy .vimrc to ~/ instead of symlinking.
 let g:airline_section_c = airline#section#create(['%{getcwd()}', "/", "file"])
+
+nnoremap <C-w> :hide <Return>
 
 "------------------------"
 " Formatting/Style Stuff "
@@ -110,6 +114,7 @@ let g:NERDTreeGitStatusShowClean = 1
 "-------"
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+nnoremap <C-s> :CtrlP <CR>
 
 "------------------------------------"
 " Vim DevIcon stuff (Must come last) "
