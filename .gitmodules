@@ -40,3 +40,15 @@
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = git@github.com:preservim/nerdtree.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule ".vim/bundle/vim-devicons"]
+	path = .vim/bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
+[submodule ".vim/bundle/vim-nerdtree-syntax-highlight"]
+	path = .vim/bundle/vim-nerdtree-syntax-highlight
+	url = git@github.com:tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule ".vim/bundle/nerdtree-git-plugin"]
+	path = .vim/bundle/nerdtree-git-plugin
+	url = git@github.com:Xuyuanp/nerdtree-git-plugin.git
