@@ -120,6 +120,11 @@ let g:NERDTreeGitStatusShowClean = 1
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 nnoremap <C-s> :CtrlP <CR>
+let g:ctrlp_root_markers = ['.python-version'] " Cuz submodules don't have them :)
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](\.(git|hg|svn)|node_modules)$',
+  \ 'file': '\v\.(exe|so|dll|sw[opqr])$',
+  \ }
 
 "------------------------------------"
 " Vim DevIcon stuff (Must come last) "

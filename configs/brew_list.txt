@@ -1,0 +1,11 @@
+bash
+cask
+cmake
+fzf
+mongosh
+neofetch
+nvm
+openssl@3
+tmux
+vim
+zlib
