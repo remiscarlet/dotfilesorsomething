@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: Something about these ssh keys? Should probably just spend a day cleaning them up in general.
+
 # SSH me bby
 alias musashi="ssh remi_scarlet@$(get_secret hosts musashi) -p26 -i~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
 alias jconj="ssh ubuntu@$(get_secret hosts jconj) -p 22 -i ~/.ssh/YutoMBP.pem"

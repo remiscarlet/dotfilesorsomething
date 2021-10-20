@@ -1,8 +1,37 @@
 #!/usr/bin/env bash
 
-function beep {
-    echo -en "\007"
+#############################
+# Host Identification Funcs #
+#############################
+
+function get_mac_hwid {
+    ioreg -rd1 -c IOPlatformExpertDevice | awk '/IOPlatformUUID/ { split($0, line, "\""); printf("%s\n", line[4]); }'
 }
+function get_linux_hwid {
+    hostid
+}
+
+function get_hw_type {
+    if [[ $(uname -s) == "Darwin" ]];
+    then
+        echo "mac"
+    else
+        echo "linux"
+    fi
+}
+
+function get_hwid {
+    if [[ $(get_hw_type) == "mac" ]];
+    then
+        get_mac_hwid
+    else
+        get_linux_hwid
+    fi
+}
+
+##############
+# Formatting #
+##############
 
 function jqlint {
     cat $1 | jq '.' > tmp.json;
@@ -16,3 +45,14 @@ function jqlint {
     fi
 }
 
+########
+# Misc #
+########
+
+function debuglog {
+    [[ $DEBUG -gt 0 ]] && echo $@
+}
+
+function beep {
+    echo -en "\007"
+}

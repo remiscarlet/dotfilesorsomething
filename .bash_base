@@ -1,38 +1,30 @@
 #!/usr/bin/env bash
 
-[[ -n $SECRETS_LOADED ]] || source "$(dirname "${BASH_SOURCE[0]}")/inc/secrets/secrets.sh"
-HWID=$(get_secret hostids $(get_hwid))
-HWTYPE=$(get_hw_type)
+DEBUG=0
+
+CWD="$(dirname ${BASH_SOURCE[0]})"
+source "$CWD/inc/bash.funcs.sh" # Contains the get_secret/get_hw_type/etc func defs
 
 function mysource {
-    source "$(dirname "${BASH_SOURCE[0]}")/$@"
+    TARGET="$CWD/$@"
+    debuglog "Loading ${TARGET#"$CWD/inc/"}"
+    source $TARGET
 }
 
-mysource inc/bash.pre.init.sh
+[[ -n $SECRETS_LOADED ]] || source "$CWD/inc/secrets.sh"
+
+HWID=$(get_secret hostids $(get_hwid))
+HWTYPE=$(get_hw_type)
+DEVELOPMENT_DIR=$(get_secret devpaths $(get_hwid))
+debuglog " --> Detected hwid: $HWID"
+debuglog " --> Detected hwtype: $HWTYPE"
+debuglog " --> Detected devdir: $DEVELOPMENT_DIR"
 
 mysource inc/bash.aliases.cd.sh
 mysource inc/bash.aliases.cmd.sh
 mysource inc/bash.aliases.ssh.sh
 
-mysource inc/bash.funcs.sh
 mysource inc/bash.gitprompt.sh
 mysource inc/ext/git-completion.sh
 
-if [[ $HWTYPE == "mac" ]];
-then
-    mysource inc/bash.node.sh
-fi
-
-if [[ $HWID == "Remi MBA" ]];
-then
-    mysource inc/bash.ooa.sh
-fi
-
-if [[ $HWID == "Dots Laptop" ]];
-then
-    mysource inc/bash.aliases.dots.sh
-fi
-
-mysource inc/bash.post.init.sh
-mysource inc/bash.post.cli.sh
-mysource inc/bash.post.pyenv.sh
+mysource inc/bash.post.sh

@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
 # CD aliases
+alias cddevelopment="cd ${DEVELOPMENT_DIR}"
+
 if [[ $HWID == "Remi MBA" ]];
 then
-    # Personal
-    alias cdblog="cd /Users/ytakamoto/Dropbox/YutoProgramming/anerdthat.codes/web/anerdthatcodes"
-    alias cdyutoprogramming="cd /Users/ytakamoto/Dropbox/YutoProgramming"
-    alias cdjconj="cd /Users/ytakamoto/Dropbox/YutoProgramming/JCoNJ"
-    alias cdblueleaf="cd /Users/ytakamoto/Dropbox/YutoProgramming/Blueleaf"
+    alias cdblog="cd ${DEVELOPMENT_DIR}/anerdthat.codes/web/anerdthatcodes"
+    alias cdjconj="cd ${DEVELOPMENT_DIR}/JCoNJ"
+    alias cdblueleaf="cd ${DEVELOPMENT_DIR}/Blueleaf"
 fi
 
 if [[ $HWID == "Dots Laptop" ]];
 then
-    # Dots
-    alias cddevelopment="cd /Users/ytakamoto/Documents/development"
+    alias cddotfiles="cd ${DEVELOPMENT_DIR}/dotfilesorsomething"
+    alias cdsocial="cd ${DEVELOPMENT_DIR}/dots-microservices-social"
+    alias cdcommon="cd ${DEVELOPMENT_DIR}/dots-microservices-common"
+    alias cdproto="cd ${DEVELOPMENT_DIR}/protobufs"
 fi
 
