@@ -8,12 +8,14 @@ then
     alias cdblog="cd ${DEVELOPMENT_DIR}/anerdthat.codes/web/anerdthatcodes"
     alias cdjconj="cd ${DEVELOPMENT_DIR}/JCoNJ"
     alias cdblueleaf="cd ${DEVELOPMENT_DIR}/Blueleaf"
+    alias cdoa="cd ${DEVELOPMENT_DIR}/order-of-axis"
 fi
 
 if [[ $HWID == "Dots Laptop" ]];
 then
     alias cddotfiles="cd ${DEVELOPMENT_DIR}/dotfilesorsomething"
     alias cdsocial="cd ${DEVELOPMENT_DIR}/dots-microservices-social"
+    alias cdadminclient="cd ${DEVELOPMENT_DIR}/dots-microservices-social/services/admin_client"
     alias cdcommon="cd ${DEVELOPMENT_DIR}/dots-microservices-common"
     alias cdproto="cd ${DEVELOPMENT_DIR}/protobufs"
 fi

@@ -24,6 +24,9 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# psql
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
 # Terminal Styling
 # Should come after gitprompt
 export CLICOLOR=1

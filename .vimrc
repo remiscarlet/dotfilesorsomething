@@ -71,25 +71,46 @@ set listchars=tab:▸\ ,eol:¬
 au BufWritePost *.go !gofmt -w %
 let g:terraform_fmt_on_save=1
 
+"-----------"
+" Syntastic "
+"-----------"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_vue_checker=['eslint']
+
 let g:syntastic_python_checkers=['mypy']
 autocmd BufWritePost *.py silent! !black %
 autocmd BufWritePost *.py edit
 autocmd BufWritePost *.py redraw!
 
+"---------"
+" vim-vue "
+"---------"
+" Disable highlighting for preprocessor langs like ts/scss/pug/etc. Helps with
+" slowdown of this plugin
+let g:vue_pre_processors = []
+
 "----------------------------"
 " Filetype-specific Settings "
 "----------------------------"
+"
+let g:html_indent_inctags = "html,body,head,tbody"
 
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
-au BufNewFile,BufRead *.erb set syntax=ruby
-autocmd FileType javascript,typescript,vue setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd FileType py setlocal shiftwidth=4 tabstop=4 noexpandtab
+autocmd FileType javascript,typescript,vue setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-let g:html_indent_inctags = "html,body,head,tbody"
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
+au BufNewFile,BufRead *.erb set syntax=ruby
 au BufNewFile,BufRead *.tpl setlocal ft=html
-
 
 "----------"
 " NERDTree "
