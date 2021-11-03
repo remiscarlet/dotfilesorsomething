@@ -41,7 +41,7 @@ function get_secret {
     (
     source ${S_LOOKUP_TABLE_DIR}${1}
     if [[ -v map[$2] ]]; then
-        echo ${map[$2]}
+        echo -n ${map[$2]}
     else
         echo "'$2' was not a valid key in the '$1' secrets lookup table!"
         return 1

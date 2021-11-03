@@ -45,9 +45,36 @@ function jqlint {
     fi
 }
 
+#############
+# Git Stuff #
+#############
+
+function gitsubmoduleupdate {
+    git submodule update --init --recursive --remote
+}
+
+function cdgits {
+    (cd $@ && gits)
+}
+
+function cdgitshow {
+    (cd $@ && git show)
+}
+
+##############
+# Docker :-/ #
+##############
+function dockernetworkinspect {
+    docker network inspect dots-microservices-social_default | grep -C 5 $@
+}
+
 ########
 # Misc #
 ########
+
+function vimdotconfig {
+    vim ${DEVELOPMENT_DIR}dotfilesorsomething/$@
+}
 
 function debuglog {
     [[ $DEBUG -gt 0 ]] && echo $@
