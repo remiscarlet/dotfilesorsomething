@@ -29,6 +29,9 @@ set synmaxcol=256
 set statusline+=%F
 set laststatus=2
 
+" Open last location
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 " Lol this line below doesn't like symlinks.
 " If vim gives you issues due to symlinking .vimrc, it's because of the line below. Just copy .vimrc to ~/ instead of symlinking.
 let g:airline_section_c = airline#section#create(['%{getcwd()}', "/", "file"])

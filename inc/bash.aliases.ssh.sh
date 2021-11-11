@@ -5,7 +5,7 @@
 # SSH me bby
 alias musashi="ssh remi_scarlet@$(get_secret hosts musashi) -p26 -i~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
 alias jconj="ssh ubuntu@$(get_secret hosts jconj) -p 22 -i ~/.ssh/YutoMBP.pem"
-alias aws="ssh ubuntu@$(get_secret hosts aws) -p 22 -i ~/.ssh/scarletjaeger-aws.pem"
+alias aws_scarletjaeger="ssh ubuntu@$(get_secret hosts aws) -p 22 -i ~/.ssh/scarletjaeger-aws.pem"
 alias anerdthatcodes="ssh ubuntu@$(get_secret hosts antc) -p 22 -i ~/.ssh/scarletjaeger-aws.pem"
 alias sachiko="ssh pi@$(get_secret hosts sachiko) -p2222 -i ~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
 alias yc="ssh minecraft@$(get_secret hosts ycmc) -p2222 -i ~/.ssh/id_rsa"

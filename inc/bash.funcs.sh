@@ -64,8 +64,13 @@ function cdgitshow {
 ##############
 # Docker :-/ #
 ##############
+
 function dockernetworkinspect {
     docker network inspect dots-microservices-social_default | grep -C 5 $@
+}
+
+function dockerexecit {
+docker exec -it dots-microservices-social_${@}_1 /bin/bash
 }
 
 ########

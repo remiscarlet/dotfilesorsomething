@@ -61,3 +61,9 @@
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".tmux/plugins/tmux-continuum"]
+	path = .tmux/plugins/tmux-continuum
+	url = https://git::@github.com/tmux-plugins/tmux-continuum
+[submodule ".tmux/plugins/tmux-weather"]
+	path = .tmux/plugins/tmux-weather
+	url = https://git::@github.com/xamut/tmux-weather
