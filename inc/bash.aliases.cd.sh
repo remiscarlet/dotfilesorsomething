@@ -18,5 +18,7 @@ then
     alias cdadminclient="cd ${DEVELOPMENT_DIR}/dots-microservices-social/services/admin_client"
     alias cdcommon="cd ${DEVELOPMENT_DIR}/dots-microservices-common"
     alias cdproto="cd ${DEVELOPMENT_DIR}/protobufs"
+    alias cdlegacy="cd ${DEVELOPMENT_DIR}/twodots-api"
+    alias cdinfra="cd ${DEVELOPMENT_DIR}/dots-infra"
 fi
 

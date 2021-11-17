@@ -61,6 +61,10 @@ function cdgitshow {
     (cd $@ && git show)
 }
 
+function mygrep {
+    grep -rI --exclude-dir=".git" --exclude-dir="node_modules" --exclude-dir=".mypy_cache" "$@"
+}
+
 ##############
 # Docker :-/ #
 ##############
@@ -72,6 +76,36 @@ function dockernetworkinspect {
 function dockerexecit {
 docker exec -it dots-microservices-social_${@}_1 /bin/bash
 }
+function dockerexecitintegrations {
+docker exec -it tests_integration_${@}_1 /bin/bash
+}
+
+#######
+# AWS #
+#######
+
+function switchawsprofile {
+    CREDSTRING=$(get_secret awscreds $1)
+    if [[ $? -ne 0 ]]; then
+        echo -e "Gave an invalid credential id. Got: $1.\nAborting."
+        return 1
+    fi
+
+    read -r AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY <<< $(IFS=':' read -ra SPLIT <<< "$CREDSTRING"; echo "${SPLIT[@]}")
+    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    echo "Successfully changed aws creds to '$1' for [default] aws profile"
+}
+
+#######
+# K8s #
+#######
+
+KUBECONFIG=/tmp/kubeconfig-dev
+function k9s-docker {
+    docker run --rm -it -v $KUBECONFIG:/root/.kube/config quay.io/derailed/k9s
+}
+
 
 ########
 # Misc #

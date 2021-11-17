@@ -6,6 +6,10 @@ alias ls="ls -GFal"
 alias gits="git status"
 alias grep="grep --color"
 
+# Docker
+alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
+
 if [[ $HWID == "Remi MBA" ]];
 then
     alias flush="mv db.sqlite3 backups/db.sqlite3.#{date} && cp db.sqlite3.cleanslate.10.13.17 db.sqlite3"
@@ -23,5 +27,6 @@ if [[ $HWID == "Dots Laptop" ]];
 then
     alias docker-compose-test="docker-compose -f docker-compose.test.yml"
     alias mongosh-td="mongosh --port=27052 --username=docker --password=$(get_secret mongocreds docker)"
+    alias k9s="k9s --kubeconfig=/tmp/kubeconfig-dev"
     alias psql-td="psql --port=5432 --host=localhost --user=docker"
 fi
