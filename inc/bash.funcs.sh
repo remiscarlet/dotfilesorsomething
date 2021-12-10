@@ -94,6 +94,8 @@ function switchawsprofile {
     read -r AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY <<< $(IFS=':' read -ra SPLIT <<< "$CREDSTRING"; echo "${SPLIT[@]}")
     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    export AWS_ACCESS_KEY_ID
+    export AWS_SECRET_ACCESS_KEY
     echo "Successfully changed aws creds to '$1' for [default] aws profile"
 }
 

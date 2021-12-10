@@ -8,7 +8,9 @@ alias grep="grep --color"
 
 # Docker
 alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+alias docker_clean_images_force='docker rmi -f $(docker images -aq)'
 alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
+alias docker_kill_all='docker kill $(docker ps -q)'
 
 if [[ $HWID == "Remi MBA" ]];
 then
