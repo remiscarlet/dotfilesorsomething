@@ -2,7 +2,7 @@
 
 # Should contain general aliases for common commands
 
-alias ls="ls -GFal"
+alias ls="ls -GFal --color"
 alias gits="git status"
 alias grep="grep --color"
 
