@@ -11,11 +11,11 @@ function mysource {
     source $TARGET
 }
 
-[[ -n $SECRETS_LOADED ]] || source "$CWD/inc/secrets.sh"
+[[ -n $SECRETS_LOADED ]] || mysource inc/secrets.sh
 
 HWID=$(get_secret hostids $(get_hwid))
 HWTYPE=$(get_hw_type)
-DEVELOPMENT_DIR=$(get_secret devpaths $(get_hwid))
+DEVELOPMENT_DIR=$(get_secret devdirs $(get_hwid))
 debuglog " --> Detected hwid: $HWID"
 debuglog " --> Detected hwtype: $HWTYPE"
 debuglog " --> Detected devdir: $DEVELOPMENT_DIR"
