@@ -3,7 +3,7 @@
 DEBUG=0
 
 CWD="$(dirname ${BASH_SOURCE[0]})"
-source "$CWD/inc/bash.funcs.sh" # Contains the get_secret/get_hw_type/etc func defs
+source "$CWD/inc/funcs.sh" # Contains the get_secret/get_hw_type/etc func defs
 
 function mysource {
     TARGET="$CWD/$@"
@@ -20,11 +20,11 @@ debuglog " --> Detected hwid: $HWID"
 debuglog " --> Detected hwtype: $HWTYPE"
 debuglog " --> Detected devdir: $DEVELOPMENT_DIR"
 
-mysource inc/bash.aliases.cd.sh
-mysource inc/bash.aliases.cmd.sh
-mysource inc/bash.aliases.ssh.sh
+mysource inc/aliases.cd.sh
+mysource inc/aliases.cmd.sh
+mysource inc/aliases.ssh.sh
 
-mysource inc/bash.gitprompt.sh
+mysource inc/gitprompt.sh
 mysource inc/ext/git-completion.sh
 
-mysource inc/bash.post.sh
+mysource inc/post.sh

@@ -7,8 +7,9 @@
 function get_mac_hwid {
     ioreg -rd1 -c IOPlatformExpertDevice | awk '/IOPlatformUUID/ { split($0, line, "\""); printf("%s\n", line[4]); }'
 }
+
 function get_linux_hwid {
-    hostid
+    echo "$(cat /etc/machine-id)-$(whoami)"
 }
 
 function get_hw_type {
