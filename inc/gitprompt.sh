@@ -26,7 +26,7 @@ if [[ $HWTYPE == "mac" ]];
 then
     HOST="MACOS"
 else
-    HOST=$(get_secret hostids $(hostid))
+    HOST=$(get_secret hostids $(get_hwid))
 fi
 
 ##############################
