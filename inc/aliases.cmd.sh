@@ -2,7 +2,13 @@
 
 # Should contain general aliases for common commands
 
-alias ls="ls -GFal --color"
+if [[ $HWTYPE == "mac" ]];
+then
+    alias ls="ls -GFal"
+else
+    alias ls="ls -Fal --color"
+fi
+
 alias gits="git status"
 alias grep="grep --color"
 
