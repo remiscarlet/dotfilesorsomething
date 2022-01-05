@@ -37,4 +37,6 @@ then
     alias mongosh-td="mongosh --port=27052 --username=docker --password=$(get_secret mongocreds docker)"
     alias k9s="k9s --kubeconfig=/tmp/kubeconfig-dev"
     alias psql-td="psql --port=5432 --host=localhost --user=docker"
+
+    alias assumeAwsMasterRole="switchawsprofile devmaster && assumeAwsRole dots_dev_test_admin"
 fi

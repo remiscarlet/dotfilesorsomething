@@ -9,6 +9,7 @@ alias aws_scarletjaeger="ssh ubuntu@$(get_secret hosts aws) -p 22 -i ~/.ssh/scar
 alias anerdthatcodes="ssh ubuntu@$(get_secret hosts antc) -p 22 -i ~/.ssh/scarletjaeger-aws.pem"
 alias sachiko="ssh pi@$(get_secret hosts sachiko) -p2222 -i ~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
 alias yc="ssh minecraft@$(get_secret hosts ycmc) -p2222 -i ~/.ssh/id_rsa"
+alias ycremi="ssh remi@$(get_secret hosts ycmc) -p2222 -i ~/.ssh/id_rsa"
 alias ycforums="ssh ubuntu@$(get_secret hosts ycforums) -p22 -i ~/.ssh/yc-forums-scarletjaeger.pem"
 alias gcp_vm="ssh remi@$(get_secret hosts gcpvm)"
 
