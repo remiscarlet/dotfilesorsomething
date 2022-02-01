@@ -67,6 +67,7 @@ nnoremap nuf :NumOff <Return>
 " Formatting/Style Stuff "
 "------------------------"
 
+highlight PMenu term=reverse ctermbg=12 gui=undercurl guisp=Blue
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 set listchars=tab:▸\ ,eol:¬
@@ -100,13 +101,26 @@ autocmd BufWritePost *.py redraw!
 " slowdown of this plugin
 let g:vue_pre_processors = []
 
+"---------"
+" indentLine "
+"---------"
+let g:indentLine_char = '⦙'
+set foldlevelstart=20
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+
+"----------------"
+" vim-yaml-folds "
+"----------------"
+" 'za' for "Toggle current fold"
+" 'zR' for "Expand all folds"
+
 "----------------------------"
 " Filetype-specific Settings "
 "----------------------------"
 "
 let g:html_indent_inctags = "html,body,head,tbody"
 
-autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd FileType py setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd FileType javascript,typescript,vue setlocal shiftwidth=4 tabstop=4 softtabstop=4

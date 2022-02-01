@@ -140,6 +140,10 @@ function assumeAwsRole {
     echo "Set AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
 }
 
+function ecrdockerlogin {
+    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(get_secret aws_ecr_registries dots_dev_test_admin)
+}
+
 function awswhoami {
     aws sts get-caller-identity
 }
