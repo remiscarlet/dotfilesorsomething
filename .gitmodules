@@ -70,3 +70,12 @@
 [submodule ".vim/bundle/vim-pyenv"]
 	path = .vim/bundle/vim-pyenv
 	url = git@github.com:lambdalisue/vim-pyenv.git
+[submodule ".vim/bundle/indentLine"]
+	path = .vim/bundle/indentLine
+	url = git@github.com:Yggdroot/indentLine.git
+[submodule ".vim/bundle/vim-yaml-folds"]
+	path = .vim/bundle/vim-yaml-folds
+	url = https://github.com/pedrohdz/vim-yaml-folds.git
+[submodule ".vim/bundle/any-jump.vim"]
+	path = .vim/bundle/any-jump.vim
+	url = https://github.com/pechorin/any-jump.vim.git

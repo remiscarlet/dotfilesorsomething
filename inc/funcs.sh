@@ -85,19 +85,67 @@ docker exec -it tests_integration_${@}_1 /bin/bash
 # AWS #
 #######
 
+function unsetawsprofile {
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_SESSION_TOKEN
+}
+
+function setawsprofile {
+    unsetawsprofile
+
+    if [[ -z "$1" || -z "$2" ]]; then
+        echo "Must provide two arguments to setawsprofile! Got: '$1' and '$2'. Aborting."
+        (exit 1)
+    fi
+
+    export AWS_ACCESS_KEY_ID=$1
+    export AWS_SECRET_ACCESS_KEY=$2
+    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    echo "Successfully changed aws creds to '$1:$2' for [default] aws profile"
+}
+
 function switchawsprofile {
+    unsetawsprofile
+
     CREDSTRING=$(get_secret awscreds $1)
     if [[ $? -ne 0 ]]; then
         echo -e "Gave an invalid credential id. Got: $1.\nAborting."
-        return 1
+        (exit 1)
     fi
 
     read -r AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY <<< $(IFS=':' read -ra SPLIT <<< "$CREDSTRING"; echo "${SPLIT[@]}")
-    aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    export AWS_ACCESS_KEY_ID
-    export AWS_SECRET_ACCESS_KEY
-    echo "Successfully changed aws creds to '$1' for [default] aws profile"
+
+    setawsprofile $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+}
+
+function assumeAwsRole {
+    unsetawsprofile
+
+    ROLE_ARN=$(get_secret aws_role_arn $1)
+    echo "ROLE_ARN: $ROLE_ARN"
+    OUT=$(aws sts assume-role  --role-arn $ROLE_ARN --role-session-name "ytakamoto-temp")
+
+    echo "OUT: $OUT"
+
+    if [[ -z "$(echo $OUT | jq .AssumedRoleUser)" ]]; then
+        echo "Could not successfully invoke 'aws sts assume-role'!"
+        echo "Got:\n$OUT"
+        (exit 1)
+    fi
+
+    setawsprofile $(echo $OUT | jq -r .Credentials.AccessKeyId) $(echo $OUT | jq -r .Credentials.SecretAccessKey)
+    export AWS_SESSION_TOKEN=$(echo $OUT | jq -r .Credentials.SessionToken)
+    echo "Set AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
+}
+
+function ecrdockerlogin {
+    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(get_secret aws_ecr_registries dots_dev_test_admin)
+}
+
+function awswhoami {
+    aws sts get-caller-identity
 }
 
 #######
