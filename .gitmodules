@@ -67,3 +67,6 @@
 [submodule ".tmux/plugins/tmux-weather"]
 	path = .tmux/plugins/tmux-weather
 	url = https://git::@github.com/xamut/tmux-weather
+[submodule ".vim/bundle/vim-pyenv"]
+	path = .vim/bundle/vim-pyenv
+	url = git@github.com:lambdalisue/vim-pyenv.git

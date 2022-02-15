@@ -15,3 +15,4 @@ if [[ $(uname -s) == "Darwin" ]];
 then
     defaults write com.apple.finder AppleShowAllFiles true;
 fi
+

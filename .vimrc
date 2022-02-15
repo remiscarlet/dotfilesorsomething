@@ -69,7 +69,6 @@ nnoremap nuf :NumOff <Return>
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-set listchars=tab:▸\ ,eol:¬
 
 au BufWritePost *.go !gofmt -w %
 let g:terraform_fmt_on_save=1
