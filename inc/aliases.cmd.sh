@@ -35,8 +35,11 @@ if [[ $HWID == "Dots Laptop" ]];
 then
     alias docker-compose-test="docker-compose -f docker-compose.test.yml"
     alias mongosh-td="mongosh --port=27052 --username=docker --password=$(get_secret mongocreds docker)"
-    alias k9s="k9s --kubeconfig=/tmp/kubeconfig-dev"
     alias psql-td="psql --port=5432 --host=localhost --user=docker"
+
+    function myk9s {
+        k9s --kubeconfig=/tmp/kubeconfig-$@
+    }
 
     alias assumeAwsMasterRole="switchawsprofile devmaster && assumeAwsRole dots_dev_test_admin"
 fi

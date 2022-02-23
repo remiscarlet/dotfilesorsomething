@@ -85,14 +85,14 @@ docker exec -it tests_integration_${@}_1 /bin/bash
 # AWS #
 #######
 
-function unsetawsprofile {
+function __unsetawsprofile {
     unset AWS_ACCESS_KEY_ID
     unset AWS_SECRET_ACCESS_KEY
     unset AWS_SESSION_TOKEN
 }
 
-function setawsprofile {
-    unsetawsprofile
+function __setawsprofile {
+    __unsetawsprofile
 
     if [[ -z "$1" || -z "$2" ]]; then
         echo "Must provide two arguments to setawsprofile! Got: '$1' and '$2'. Aborting."
@@ -106,8 +106,12 @@ function setawsprofile {
     echo "Successfully changed aws creds to '$1:$2' for [default] aws profile"
 }
 
+function initaws {
+    switchawsprofile devmaster
+}
+
 function switchawsprofile {
-    unsetawsprofile
+    __unsetawsprofile
 
     CREDSTRING=$(get_secret awscreds $1)
     if [[ $? -ne 0 ]]; then
@@ -117,11 +121,11 @@ function switchawsprofile {
 
     read -r AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY <<< $(IFS=':' read -ra SPLIT <<< "$CREDSTRING"; echo "${SPLIT[@]}")
 
-    setawsprofile $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+    __setawsprofile $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 }
 
 function assumeAwsRole {
-    unsetawsprofile
+    __unsetawsprofile
 
     ROLE_ARN=$(get_secret aws_role_arn $1)
     echo "ROLE_ARN: $ROLE_ARN"
@@ -135,7 +139,7 @@ function assumeAwsRole {
         (exit 1)
     fi
 
-    setawsprofile $(echo $OUT | jq -r .Credentials.AccessKeyId) $(echo $OUT | jq -r .Credentials.SecretAccessKey)
+    __setawsprofile $(echo $OUT | jq -r .Credentials.AccessKeyId) $(echo $OUT | jq -r .Credentials.SecretAccessKey)
     export AWS_SESSION_TOKEN=$(echo $OUT | jq -r .Credentials.SessionToken)
     echo "Set AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN"
 }
@@ -146,6 +150,29 @@ function ecrdockerlogin {
 
 function awswhoami {
     aws sts get-caller-identity
+}
+
+function awsprintenv {
+    echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
+    echo "AWS_CA_BUNDLE: $AWS_CA_BUNDLE"
+    echo "AWS_CLI_AUTO_PROMPT: $AWS_CLI_AUTO_PROMPT"
+    echo "AWS_CLI_FILE_ENCODING: $AWS_CLI_FILE_ENCODING"
+    echo "AWS_CONFIG_FILE: $AWS_CONFIG_FILE"
+    echo "AWS_DEFAULT_OUTPUT: $AWS_DEFAULT_OUTPUT"
+    echo "AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION"
+    echo "AWS_EC2_METADATA_DISABLED: $AWS_EC2_METADATA_DISABLED"
+    echo "AWS_MAX_ATTEMPTS: $AWS_MAX_ATTEMPTS"
+    echo "AWS_PAGER: $AWS_PAGER"
+    echo "AWS_PROFILE: $AWS_PROFILE"
+    echo "AWS_REGION: $AWS_REGION"
+    echo "AWS_RETRY_MODE: $AWS_RETRY_MODE"
+    echo "AWS_ROLE_ARN: $AWS_ROLE_ARN"
+    echo "AWS_ROLE_SESSION_NAME: $AWS_ROLE_SESSION_NAME"
+    echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
+    echo "AWS_SESSION_TOKEN: $AWS_SESSION_TOKEN"
+    echo "AWS_SHARED_CREDENTIALS_FILE: $AWS_SHARED_CREDENTIALS_FILE"
+    echo "AWS_STS_REGIONAL_ENDPOINTS: $AWS_STS_REGIONAL_ENDPOINTS"
+    echo "AWS_WEB_IDENTITY_TOKEN_FILE: $AWS_WEB_IDENTITY_TOKEN_FILE"
 }
 
 #######
