@@ -175,6 +175,11 @@ function awsprintenv {
     echo "AWS_WEB_IDENTITY_TOKEN_FILE: $AWS_WEB_IDENTITY_TOKEN_FILE"
 }
 
+function aws_psql {
+    ENV=$1
+    kubectl --kubeconfig=/tmp/kubeconfig-$ENV run --rm -i --tty --image bitnami/postgresql pg-$2 /bin/bash
+}
+
 #######
 # K8s #
 #######

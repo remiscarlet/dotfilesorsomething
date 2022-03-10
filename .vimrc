@@ -93,6 +93,12 @@ autocmd BufWritePost *.py silent! !black %
 autocmd BufWritePost *.py edit
 autocmd BufWritePost *.py redraw!
 
+"--------------"
+" any-jump.vim "
+"--------------"
+let g:any_jump_references_only_for_current_filetype = 1
+let g:any_jump_references_enabled = 0
+
 "---------"
 " vim-vue "
 "---------"

@@ -41,5 +41,9 @@ then
         k9s --kubeconfig=/tmp/kubeconfig-$@
     }
 
+    function mykubectl {
+        kubectl --kubeconfig=/tmp/kubeconfig-$1 ${@:2}
+    }
+
     alias assumeAwsMasterRole="switchawsprofile devmaster && assumeAwsRole dots_dev_test_admin"
 fi
