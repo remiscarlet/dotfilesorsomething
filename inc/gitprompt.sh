@@ -11,9 +11,7 @@ function git_prompt_info() {
 function parse_git_dirty() {
   local SUBMODULE_SYNTAX="--ignore-submodules=dirty"
   if [[ -n $(git status -s ${SUBMODULE_SYNTAX}  2> /dev/null) ]]; then
-     if [[ -n ${DISABLE_RODEO_WRANGLE} ]]; then
-       echo "$GIT_PROMPT_DIRTY"
-     fi
+    echo "$GIT_PROMPT_DIRTY"
   else
     echo "$GIT_PROMPT_CLEAN"
   fi
@@ -32,15 +30,15 @@ fi
 ##############################
 # Git Commands
 #############################
-        RED="\[\033[0;31m\]"
-     YELLOW="\[\033[0;33m\]"
-     GREEN="\[\033[0;32m\]"
-       BLUE="\[\033[0;34m\]"
+        RED="%F{red%}"
+     YELLOW="%F{yellow%}"
+     GREEN="%F{green%}"
+       BLUE="%F{blue%}"
   LIGHT_RED="\[\033[1;31m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
-      WHITE="\[\033[1;37m\]"
- LIGHT_GRAY="\[\033[0;37m\]"
- COLOR_NONE="\[\e[0m\]"
+      WHITE="%F{bright-white%}"
+ LIGHT_GRAY="%F{white%}"
+ COLOR_NONE="%F{reset_color%}"
 
 function parse_git_branch {
   git rev-parse --git-dir &> /dev/null
@@ -49,7 +47,7 @@ function parse_git_branch {
   remote_pattern="# Your branch is (.*) of"
   diverge_pattern="# Your branch and (.*) have diverged"
 
-  if [[ ! ${git_status}} =~ "working directory clean" ]]; then
+  if [[ ! ${git_status} =~ "working directory clean" ]]; then
     state="${RED}⚡ "
   fi
   # add an else if or two here if you want to get more specific
@@ -79,7 +77,7 @@ function prompt_func() {
     #prompt="${TITLEBAR}${BLUE}[${RED}\w${GREEN}$(parse_git_branch)${BLUE}]${COLOR_NONE}"
 
     #Capital W is just the trailing part of the current working directory
-    prompt="${RED}[${LIGHT_GRAY}${HOST}${RED}]${TITLEBAR}${BLUE}[${YELLOW}\W${GREEN}$(git_prompt_info)${BLUE}]${COLOR_NONE}"
+    prompt="${RED}[${LIGHT_GRAY}${HOST}${RED}]${TITLEBAR}${BLUE}[${YELLOW}%~${GREEN}$(git_prompt_info)${BLUE}]${COLOR_NONE}"
 
     # Py VirtualEnv stuff
     if [[ "$VIRTUAL_ENV" != "" ]]

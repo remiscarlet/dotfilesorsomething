@@ -2,7 +2,11 @@
 
 DEBUG=0
 
-CWD="$(dirname ${BASH_SOURCE[0]})"
+CWD="$(dirname ${BASH_SOURCE[0]})" 2> /dev/null
+if [ -z "$CWD" ]; then
+    CWD="${0:a:h}"
+fi
+
 source "$CWD/inc/funcs.sh" # Contains the get_secret/get_hw_type/etc func defs
 
 function mysource {
@@ -25,6 +29,14 @@ mysource inc/aliases.cmd.sh
 mysource inc/aliases.ssh.sh
 
 mysource inc/gitprompt.sh
-mysource inc/ext/git-completion.sh
+
+if [[ "$SHELL" != *"zsh" ]]; then
+    mysource inc/ext/git-completion.sh
+else
+    autoload -U colors && colors
+    fpath=(~/.zsh/functions $fpath)
+fi
+
+precmd() { eval "$PROMPT_COMMAND" }
 
 mysource inc/post.sh

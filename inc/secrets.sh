@@ -8,7 +8,13 @@ SECRETS_DIR="secrets" # Dir name that contains the lookup array definition files
 
 #
 SECRETS_LOADED=1
-SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+S_CWD="$(dirname ${BASH_SOURCE[0]})" 2> /dev/null
+if [ -z "$S_CWD" ]; then
+    S_CWD="${0:a:h}"
+fi
+
+SCRIPT_DIR="$( cd -- "$S_CWD" &> /dev/null && pwd )"
 S_LOOKUP_TABLE_DIR="${SCRIPT_DIR}/${SECRETS_DIR}/"
 
 function print_arr {
