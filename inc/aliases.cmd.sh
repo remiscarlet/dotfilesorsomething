@@ -18,6 +18,11 @@ alias docker_clean_images_force='docker rmi -f $(docker images -aq)'
 alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
 alias docker_kill_all='docker kill $(docker ps -q)'
 
+if [[ $HWID == "AGS"* ]];
+then
+    alias az_auth="mwinit -o && kinit -f"
+fi
+
 if [[ $HWID == "Remi MBA" ]];
 then
     alias flush="mv db.sqlite3 backups/db.sqlite3.#{date} && cp db.sqlite3.cleanslate.10.13.17 db.sqlite3"
