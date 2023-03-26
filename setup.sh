@@ -30,15 +30,13 @@ if [[ "$SHELL" == *"zsh" && ! -d "~/.zsh" ]]; then
     ln -s $CWD/.zsh ~/.zsh
 fi
 
-exit 1
-
 # All systems
-grep ".bash_base" ~/.bashrc
+grep ".bash_base" ~/.zshrc
 if [[ $? -eq 0 ]];
 then
-    echo "Your ~/.bashrc already seems to be sourcing .bash_base. Add -f to force install. Aborting. TODO: Implement the flag."
+    echo "Your ~/.zshrc already seems to be sourcing .bash_base. Add -f to force install. Aborting. TODO: Implement the flag."
 else
-    echo "source $CWD/.bash_base" > ~/.bashrc
+    echo "source $CWD/.bash_base" > ~/.zshrc
 fi
 
 
