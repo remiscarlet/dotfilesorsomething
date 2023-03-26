@@ -37,9 +37,11 @@ grep ".bash_base" ~/.bashrc
 if [[ $? -eq 0 ]];
 then
     echo "Your ~/.bashrc already seems to be sourcing .bash_base. Add -f to force install. Aborting. TODO: Implement the flag."
+else
+    echo "source $CWD/.bash_base" > ~/.bashrc
 fi
 
-echo "source $CWD/.bash_base" > ~/.bashrc
+
 
 # Mac
 if [[ $(uname -s) == "Darwin" ]];
