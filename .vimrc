@@ -29,6 +29,8 @@ set synmaxcol=256
 set statusline+=%F
 set laststatus=2
 
+set viminfo='100,<9999,s100,h
+
 " Open last location
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -130,9 +132,9 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd FileType py setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd FileType javascript,typescript,vue setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
 au BufNewFile,BufRead *.erb set syntax=ruby
 au BufNewFile,BufRead *.tpl setlocal ft=html
+au BufNewFile,BufRead *.yaml.tpl,*.yml.tpl,*.yaml,*.yml so ~/.vim/bundle/vim-yaml/after/ftplugin/yaml.vim
 
 "----------"
 " NERDTree "

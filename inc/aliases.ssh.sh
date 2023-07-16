@@ -14,5 +14,5 @@ alias ycforums="ssh ubuntu@$(get_secret hosts ycforums) -p22 -i ~/.ssh/yc-forums
 alias gcp_vm="ssh remi@$(get_secret hosts gcpvm)"
 
 ## SSH me bby - LAN Edition
-alias cirno="ssh cirno@$(get_secret hosts-lan cirno) -p2224 -i ~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
+alias cirno="ssh cirno@$(get_secret hosts-lan cirno) -p2224 -i ~/.ssh/id_rsa"
 alias satori="ssh satori@$(get_secret hosts-lan satori) -p2223 -i ~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
