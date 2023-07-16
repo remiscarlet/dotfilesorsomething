@@ -1,7 +1,9 @@
 "-------------------"
 " INFECT EVERYTHING "
 "-------------------"
+
 execute pathogen#infect()
+
 syntax on
 filetype plugin indent on
 
@@ -183,5 +185,6 @@ else
     " 'other', or linux hosts.
     set guifont=Hack\ Regular\ Nerd\ Font\ Complete\ 15
 endif
+
 set encoding=utf8
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
