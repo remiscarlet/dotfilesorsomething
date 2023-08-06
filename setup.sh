@@ -66,6 +66,9 @@ if [[ x"$INSTALL_DOCKER" != "x" ]]; then
     fi
 fi
 
+git submodule init
+git submodule update
+
 # Symlinks
 
 if [[ ! -d "~/.tmux" ]]; then
