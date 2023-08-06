@@ -44,7 +44,12 @@ function get_secret {
     )
 }
 
-SHELL_CONFIG="$(get_secret homedirs $(get_hwid))/.bashrc"
+if [[ "$SHELL" == *"zsh" ]]; then
+    SHELL_CONFIG="$(get_secret homedirs $(get_hwid))/.zshrc"
+else
+    SHELL_CONFIG="$(get_secret homedirs $(get_hwid))/.bashrc"
+fi
+
 function reload_secrets {
     unset SECRETS_LOADED
     load_secrets

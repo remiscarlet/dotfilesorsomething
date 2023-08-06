@@ -30,6 +30,14 @@ function get_hwid {
     fi
 }
 
+function get_shell_rc {
+    if [[ x"$SHELL" == x"zsh" ]]; then
+        echo ".zshrc"
+    else
+        echo ".bashrc"
+    fi
+}
+
 ##############
 # Formatting #
 ##############

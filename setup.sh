@@ -8,40 +8,62 @@ fi
 CWD=$(readlink -f $CWD)
 
 # Install stuff
+which apt
+if [[ "$?" == "0" ]]; then
+    OS=debian
+    PKG_MANAGER=apt
+else
+    OS=rhel
+    PKG_MANAGER=yum
+fi
+echo $PKG_MANAGER
+echo $OS
 
 if [[ "$SHELL" != *"zsh" ]]; then
-    sudo apt install zsh
-    chsh -s /bin/zsh
+    sudo $PKG_MANAGER update
+    sudo $PKG_MANAGER install zsh -y
+
+    chsh --shell $(which zsh) $(whoami)
 fi
 
 which pyenv
 if [[ "$?" == "1" ]]; then
     curl https://pyenv.run | bash
-    sudo apt update; sudo apt install build-essential libssl-dev zlib1g-dev \
+    sudo $PKG_MANAGER update; sudo $PKG_MANAGER install build-essential libssl-dev zlib1g-dev \
         libbz2-dev libreadline-dev libsqlite3-dev curl \
-        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev -y
 fi
 
-if [[ x"$INSTALL_DOCKER" == "x" ]]; then
-    echo "The INSTALL_DOCKER envvar was set - Installing docker assuming ubuntu"
+if [[ x"$INSTALL_DOCKER" != "x" ]]; then
+    if [[ x"$OS" == x"debian" ]]; then
+        echo "The INSTALL_DOCKER envvar was set - Installing docker assuming ubuntu"
 
-    # From https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository
-    sudo apt-get update
-    sudo apt-get install ca-certificates curl gnupg
+        # From https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository
+        sudo apt-get update
+        sudo apt-get install ca-certificates curl gnupg
 
-    sudo install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+        sudo install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-    echo \
-    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        echo \
+        "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+        sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-    sudo apt-get update
+        sudo apt-get update
 
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    sudo apt-get install docker-compose-plugin
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        sudo apt-get install docker-compose-plugin
+    else
+        echo "The INSTALL_DKCER envvar was set - Installing docker assuming RHEL"
+        # From https://docs.docker.com/engine/install/rhel/#install-using-the-repository
+        sudo yum install -y yum-utils
+        sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+        sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+        sudo systemctl start docker
+    fi
 fi
 
 # Symlinks
