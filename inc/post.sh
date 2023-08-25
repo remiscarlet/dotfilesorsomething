@@ -22,6 +22,11 @@ then
     export PATH="/apollo/env/envImprovement/bin:$PATH"
 fi
 
+if [[ $HWID == "AGS" ]];
+then
+    export PATH="$HOME/.toolbox/bin:$PATH"
+fi
+
 # Pyenv - I think all setups can use these fine?
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"

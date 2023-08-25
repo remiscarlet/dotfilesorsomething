@@ -13,6 +13,9 @@ alias ycremi="ssh remi@$(get_secret hosts ycmc) -p2222 -i ~/.ssh/id_rsa"
 alias ycforums="ssh ubuntu@$(get_secret hosts ycforums) -p22 -i ~/.ssh/yc-forums-scarletjaeger.pem"
 alias gcp_vm="ssh remi@$(get_secret hosts gcpvm)"
 
+alias cloud_desk="ssh $(get_secret hosts amazon-cloud-desktop)"
+
 ## SSH me bby - LAN Edition
 alias cirno="ssh cirno@$(get_secret hosts-lan cirno) -p2224 -i ~/.ssh/id_rsa"
 alias satori="ssh satori@$(get_secret hosts-lan satori) -p2223 -i ~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
+
