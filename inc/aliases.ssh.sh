@@ -14,6 +14,8 @@ alias ycforums="ssh ubuntu@$(get_secret hosts ycforums) -p22 -i ~/.ssh/yc-forums
 alias gcp_vm="ssh remi@$(get_secret hosts gcpvm)"
 
 alias cloud_desk="ssh $(get_secret hosts amazon-cloud-desktop)"
+alias cloud_desk2="ssh $(get_secret hosts amazon-cloud-desktop-mkii)"
+alias cloud_desk3="ssh $(get_secret hosts amazon-cloud-desktop-mkiii)"
 
 ## SSH me bby - LAN Edition
 alias cirno="ssh cirno@$(get_secret hosts-lan cirno) -p2224 -i ~/.ssh/id_rsa"
