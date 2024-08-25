@@ -28,6 +28,8 @@ mysource inc/aliases.cd.sh
 mysource inc/aliases.cmd.sh
 mysource inc/aliases.ssh.sh
 
+mysource inc/bash.envs.sh
+
 mysource inc/gitprompt.sh
 
 if [[ "$SHELL" != *"zsh" ]]; then

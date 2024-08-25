@@ -83,10 +83,36 @@ function dockernetworkinspect {
 }
 
 function dockerexecit {
-docker exec -it dots-microservices-social_${@}_1 /bin/bash
+    docker exec -it dots-microservices-social_${@}_1 /bin/bash
 }
 function dockerexecitintegrations {
-docker exec -it tests_integration_${@}_1 /bin/bash
+    docker exec -it tests_integration_${@}_1 /bin/bash
+}
+
+function dockerCopyContainerVolumeDir {
+    if [[ -z $1 && -z $2 && -z $3 ]]; then
+        echo "dockerCopyContainerVolumeDir <container_name> <volume_data_path> <local_target_dir>"
+        return;
+    elif [[ -z $1 ]]; then
+		echo "Must provide a container name as first arg. This is the container we will copy the volume data from."
+        return;
+	elif [[ -z $2 ]]; then
+		echo "Must provide a volume data path. This is the path the volume has its data in"
+        return;
+    elif [[ -z $3 ]]; then
+        echo "Must provide local destination for the copy."
+        return;
+	fi
+
+    TARGET_CONTAINER_NAME=$1
+    VOLUME_DATA_PATH=$2
+    LOCAL_DEST=$3
+	docker run \
+		--rm \
+        --mount type=bind,source=${PWD}/${LOCAL_DEST},target=/local_copy_dir \
+		--volumes-from ${TARGET_CONTAINER_NAME} \
+		eeacms/rsync \
+		ls -al / && rsync -arP ${VOLUME_DATA_PATH} /local_copy_dir
 }
 
 #######

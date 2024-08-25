@@ -15,6 +15,9 @@ if [[ "$?" == "0" ]]; then
 else
     OS=rhel
     PKG_MANAGER=yum
+
+    sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+    sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 fi
 echo $PKG_MANAGER
 echo $OS
@@ -26,12 +29,18 @@ if [[ "$SHELL" != *"zsh" ]]; then
     chsh --shell $(which zsh) $(whoami)
 fi
 
+
 which pyenv
 if [[ "$?" == "1" ]]; then
     curl https://pyenv.run | bash
-    sudo $PKG_MANAGER update; sudo $PKG_MANAGER install build-essential libssl-dev zlib1g-dev \
-        libbz2-dev libreadline-dev libsqlite3-dev curl \
-        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev -y
+    if [[ x"$OS" == x"rhel" ]]; then
+        sudo dnf install make gcc patch zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-devel libnsl2-devel
+    else
+        sudo $PKG_MANAGER update; sudo $PKG_MANAGER install build-essential libssl-dev zlib1g-dev \
+            libbz2-dev libreadline-dev libsqlite3-dev curl \
+            libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev -y
+    fi
+
 fi
 
 if [[ x"$INSTALL_DOCKER" != "x" ]]; then
@@ -56,10 +65,11 @@ if [[ x"$INSTALL_DOCKER" != "x" ]]; then
         sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
         sudo apt-get install docker-compose-plugin
     else
-        echo "The INSTALL_DKCER envvar was set - Installing docker assuming RHEL"
+        echo "The INSTALL_DOCKER envvar was set - Installing docker assuming RHEL"
         # From https://docs.docker.com/engine/install/rhel/#install-using-the-repository
         sudo yum install -y yum-utils
-        sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+        sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
         sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
         sudo systemctl start docker
