@@ -27,6 +27,13 @@ then
     export PATH="$HOME/.toolbox/bin:$PATH"
 fi
 
+if [[ -d /usr/local/bin/apache-maven ]];
+then
+    export M2_HOME=/usr/local/bin/apache-maven
+    export M2=$M2_HOME/bin
+    export PATH=$M2:$PATH
+fi
+
 # Pyenv - I think all setups can use these fine?
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
