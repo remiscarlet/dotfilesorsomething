@@ -18,10 +18,11 @@ alias cloud_desk2="ssh $(get_secret hosts amazon-cloud-desktop-mkii)"
 alias cloud_desk3="ssh $(get_secret hosts amazon-cloud-desktop-mkiii)"
 
 ## SSH me bby - LAN Edition
-alias cirno="ssh cirno@$(get_secret hosts-lan cirno) -p2224 -i ~/.ssh/id_rsa"
+alias cirno="ssh cirno@$(get_secret hosts-lan cirno) -p2224 -i ~/.ssh/id_ecdsa"
 alias satori="ssh satori@$(get_secret hosts-lan satori) -p2223 -i ~/.ssh/DONTLOSETHISASECONDTIMEYOUFUCKTARD.pem"
 
 ## SSH me bby - TMR WireGuard Edition
+alias ashigara="ssh root@$(get_secret hosts ashigara) -P 8006"
 alias fubukikai="ssh remi@$(get_secret hosts fubukikai)"
 alias yamatokai="ssh remi@$(get_secret hosts yamatokai) -p26"
 alias yamatokaini="ssh remi@$(get_secret hosts yamatokaini)"
